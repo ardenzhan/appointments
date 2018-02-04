@@ -1,0 +1,41 @@
+<h1>New Appointment</h1>
+
+<form
+  (submit)="onSubmit(); createAppointment.resetForm()"
+  #createAppointment="ngForm"
+>
+  <p>
+  <label>Date: </label>
+  <input 
+    type="datetime-local" 
+    name="datetime"
+    required
+    min="{{ currentDate }}"
+    [(ngModel)]="appointment.datetime"
+    #date="ngModel"
+  />
+  </p>
+  <small *ngIf="errors != null">{{ errors | json }}</small>
+
+  <p>
+  <label>Complaint</label><br>
+  <textarea
+    cols="50"
+    rows="4"
+    type="text"
+    name="complaint"
+    required
+    minlength="10"
+    maxlength="200"
+    [(ngModel)]="appointment.complaint"
+    #complaint="ngModel"
+  ></textarea>
+  <br><span *ngIf="complaint.errors != null">{{ complaint.errors | json }}</span>
+  </p>
+
+  <p>
+  <button [routerLink]="['/dashboard']">Cancel</button>
+  <button type="submit" [disabled]="!createAppointment.valid">Create Appointment</button>
+  </p>
+</form>
+
