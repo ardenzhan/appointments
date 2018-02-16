@@ -24,8 +24,5 @@ export class UserNewComponent implements OnInit {
       (user) => { this._router.navigate(['/dashboard']); },
       (err) => { console.log(err); }
     );
-
-    this.user = new User();
   }
-
 }
